@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zimbabwe State of Developers Survey 2026</title>
+  
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Your External CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Loading Overlay -->
+<div id="loadingOverlay">
+  <div class="spinner-border text-light" style="width: 3rem; height: 3rem;" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<div class="container my-5">
+
+  <!-- HEADER -->
+  <div class="text-center mb-5">
+    <h1 class="fw-bold">🇿🇼 Zimbabwe State of Developers Survey 2026</h1>
+    <p class="text-muted mt-2">A comprehensive annual survey of Zimbabwe's software developer and IT professional community</p>
+    <span class="badge badge-time px-3 py-2">⏱ Takes 15–20 minutes</span>
+    <p class="mt-2"><small>Modeled after Stack Overflow Developer Survey & OfferZen State of the Nation</small></p>
+  </div>
+
+  <!-- SUCCESS MESSAGE -->
+  <div id="successMessage" class="alert alert-success alert-dismissible fade" role="alert">
+    <h4 class="alert-heading">✅ Thank you for your contribution!</h4>
+    <p>Your response has been submitted successfully. You're helping build Zimbabwe's first comprehensive tech community report.</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+
+  <!-- ERROR MESSAGE -->
+  <div id="errorMessage" class="alert alert-danger alert-dismissible fade" role="alert">
+    <h4 class="alert-heading">❌ Submission Error</h4>
+    <p id="errorText">There was an error submitting your response. Please try again.</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h4 class="fw-semibold mb-3">About This Survey</h4>
+      <p>
+        This comprehensive survey aims to create the most detailed picture of Zimbabwe's tech ecosystem. 
+        Following the models of Stack Overflow's annual Developer Survey and OfferZen's State of the Nation, 
+        we're gathering data to help:
+      </p>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <h6 class="mt-3">For Developers:</h6>
+          <ul>
+            <li>Benchmark salaries and compensation</li>
+            <li>Understand career progression paths</li>
+            <li>Identify skill gaps and learning opportunities</li>
+            <li>Connect with community resources</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h6 class="mt-3">For Companies & Policy Makers:</h6>
+          <ul>
+            <li>Understand hiring market trends</li>
+            <li>Improve workplace policies</li>
+            <li>Shape education and training programs</li>
+            <li>Inform tech industry regulations</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="alert alert-info mt-3">
+        <strong>📊 Comprehensive Data Collection:</strong> This survey covers demographics, compensation, tech stack, work environment, career development, challenges, and future outlook.
+      </div>
+      
+      <div class="alert alert-success mt-3 mb-0">
+        🔒 <strong>Privacy & Anonymity:</strong> All responses are completely anonymous. No personally identifiable information is collected. Data will only be published in aggregate form.
+      </div>
+    </div>
+  </div>
+
+  <!-- SURVEY FORM -->
+  <form id="surveyForm">
+    
+    <!-- ==================== SECTION 1: DEMOGRAPHICS ==================== -->
+    <h4 class="section-title">👤 Demographic Information</h4>
+    <div class="question-context">
+      This section helps us understand who makes up Zimbabwe's tech community. All demographic questions are optional.
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Age</label>
+        <select class="form-select" name="age">
+          <option value="">Prefer not to say</option>
+          <option>Under 18</option>
+          <option>18-24</option>
+          <option>25-34</option>
+          <option>35-44</option>
+          <option>45-54</option>
+          <option>55-64</option>
+          <option>65+</option>
+        </select>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Gender</label>
+        <select class="form-select" name="gender">
+          <option value="">Prefer not to say</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Non-binary / third gender</option>
+          <option>Prefer to self-describe</option>
+          <option>Prefer not to answer</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">If you prefer to self-describe your gender:</label>
+      <input type="text" class="form-control" name="genderSelfDescribe" placeholder="Optional">
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Current location in Zimbabwe</label>
+        <select class="form-select" name="location">
+          <option>Harare</option>
+          <option>Bulawayo</option>
+          <option>Mutare</option>
+          <option>Gweru</option>
+          <option>Masvingo</option>
+          <option>Kwekwe</option>
+          <option>Kadoma</option>
+          <option>Chitungwiza</option>
+          <option>Norton</option>
+          <option>Marondera</option>
+          <option>Chegutu</option>
+          <option>Zvishavane</option>
+          <option>Bindura</option>
+          <option>Beitbridge</option>
+          <option>Kariba</option>
+          <option>Chinhoyi</option>
+          <option>Epworth</option>
+          <option>Other urban area</option>
+          <option>Rural area</option>
+          <option>Outside Zimbabwe</option>
+        </select>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">If other location, please specify:</label>
+        <input type="text" class="form-control" name="locationOther" placeholder="Enter your location">
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Ethnicity (optional)</label>
+      <select class="form-select" name="ethnicity">
+        <option value="">Prefer not to say</option>
+        <option>Black African</option>
+        <option>White</option>
+        <option>Coloured</option>
+        <option>Asian</option>
+        <option>Mixed Race</option>
+        <option>Other</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Do you identify as a person with a disability?</label>
+      <select class="form-select" name="disability">
+        <option value="">Prefer not to say</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </div>
+
+    <!-- ==================== SECTION 2: EDUCATION & BACKGROUND ==================== -->
+    <h4 class="section-title">🎓 Education & Career Background</h4>
+    
+    <div class="mb-3">
+      <label class="form-label">Highest level of formal education completed</label>
+      <select class="form-select" name="educationLevel">
+        <option>Primary school</option>
+        <option>Some secondary school</option>
+        <option>O-Level completed</option>
+        <option>A-Level completed</option>
+        <option>Technical/Vocational certificate</option>
+        <option>Diploma</option>
+        <option>Bachelor's degree</option>
+        <option>Honours degree</option>
+        <option>Master's degree</option>
+        <option>PhD or higher</option>
+        <option>Other professional qualification</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Field of study (primary)</label>
+      <select class="form-select" name="fieldOfStudy">
+        <option>Computer Science</option>
+        <option>Information Systems</option>
+        <option>Software Engineering</option>
+        <option>Information Technology</option>
+        <option>Electrical/Electronic Engineering</option>
+        <option>Mathematics/Statistics</option>
+        <option>Physics</option>
+        <option>Business/Commerce</option>
+        <option>Humanities/Social Sciences</option>
+        <option>Other Engineering</option>
+        <option>Other Science</option>
+        <option>Other field</option>
+        <option>No formal education in tech</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">University/Institution attended (optional)</label>
+      <input type="text" class="form-control" name="university" placeholder="e.g., University of Zimbabwe, Harare Institute of Technology">
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Year you started working in tech</label>
+      <select class="form-select" name="yearStartedTech">
+        <option>Before 2000</option>
+        <option>2000-2005</option>
+        <option>2006-2010</option>
+        <option>2011-2015</option>
+        <option>2016-2018</option>
+        <option>2019-2020</option>
+        <option>2021-2022</option>
+        <option>2023</option>
+        <option>2024</option>
+        <option>2025</option>
+        <option>2026</option>
+        <option>Not yet working in tech</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">How did you primarily learn to code/program? (Select all that apply)</label><br>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="learnedCoding" value="University">University/College degree</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="learnedCoding" value="OnlineCourses">Online courses (Coursera, Udemy, edX, etc.)</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="learnedCoding" value="Bootcamp">Coding bootcamp</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="learnedCoding" value="SelfTaught">Self-taught (books, documentation)</div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="learnedCoding" value="Mentorship">Mentorship/Apprenticeship</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="learnedCoding" value="OnJob">On-the-job training</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="learnedCoding" value="SecondarySchool">Secondary school</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="learnedCoding" value="OtherLearning">Other</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== SECTION 3: CURRENT EMPLOYMENT ==================== -->
+    <h4 class="section-title">💼 Current Employment</h4>
+    
+    <div class="mb-3">
+      <label class="form-label">Current employment status</label>
+      <select class="form-select" name="employmentStatus">
+        <option>Employed full-time</option>
+        <option>Employed part-time</option>
+        <option>Self-employed/Freelancer</option>
+        <option>Founder/Entrepreneur</option>
+        <option>Unemployed, looking for work</option>
+        <option>Unemployed, not looking for work</option>
+        <option>Student</option>
+        <option>Retired</option>
+        <option>Prefer not to say</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Primary role/job title</label>
+      <select class="form-select" name="jobTitle">
+        <option>Academic researcher</option>
+        <option>Back-end developer</option>
+        <option>Blockchain developer</option>
+        <option>Business analyst</option>
+        <option>Cloud/DevOps engineer</option>
+        <option>Data analyst</option>
+        <option>Data scientist</option>
+        <option>Database administrator</option>
+        <option>Desktop developer</option>
+        <option>Developer advocate</option>
+        <option>DevOps specialist</option>
+        <option>Embedded developer</option>
+        <option>Engineering manager</option>
+        <option>Front-end developer</option>
+        <option>Full-stack developer</option>
+        <option>Game developer</option>
+        <option>Mobile developer</option>
+        <option>ML/AI engineer</option>
+        <option>Product manager</option>
+        <option>QA/Test engineer</option>
+        <option>Security professional</option>
+        <option>Site reliability engineer</option>
+        <option>System administrator</option>
+        <option>Technical writer</option>
+        <option>UX/UI designer</option>
+        <option>Other (please specify)</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">If "Other" role, please specify:</label>
+      <input type="text" class="form-control" name="jobTitleOther" placeholder="Your specific role">
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Years of professional coding/development experience</label>
+        <select class="form-select" name="yearsExperience">
+          <option>Less than 1 year</option>
+          <option>1-2 years</option>
+          <option>3-5 years</option>
+          <option>6-10 years</option>
+          <option>11-15 years</option>
+          <option>16-20 years</option>
+          <option>More than 20 years</option>
+        </select>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Years with current employer</label>
+        <select class="form-select" name="yearsCurrentEmployer">
+          <option>Less than 1 year</option>
+          <option>1-2 years</option>
+          <option>3-5 years</option>
+          <option>6-10 years</option>
+          <option>More than 10 years</option>
+          <option>Not applicable</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Company/organization type</label>
+      <select class="form-select" name="companyType">
+        <option>Startup (1-50 employees)</option>
+        <option>Small-medium enterprise (51-200 employees)</option>
+        <option>Large local company (200+ employees in Zimbabwe)</option>
+        <option>Multinational corporation</option>
+        <option>Government/Public sector</option>
+        <option>NGO/Non-profit</option>
+        <option>Educational institution</option>
+        <option>Freelance/Self-employed</option>
+        <option>Agency/Consultancy</option>
+        <option>Other</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Industry/sector of your employer</label>
+      <select class="form-select" name="industry">
+        <option>Agriculture/Agritech</option>
+        <option>Banking/Financial Services/Fintech</option>
+        <option>E-commerce/Retail</option>
+        <option>Education/Edtech</option>
+        <option>Healthcare/Healthtech</option>
+        <option>ICT/Telecommunications</option>
+        <option>Manufacturing</option>
+        <option>Media/Entertainment</option>
+        <option>Mining</option>
+        <option>Real Estate/Proptech</option>
+        <option>Software/Technology</option>
+        <option>Transport/Logistics</option>
+        <option>Tourism/Hospitality</option>
+        <option>Government/Public Service</option>
+        <option>Consulting</option>
+        <option>Other</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Company headquarters location</label>
+      <select class="form-select" name="companyHQ">
+        <option>Zimbabwe</option>
+        <option>South Africa</option>
+        <option>Other African country</option>
+        <option>United States</option>
+        <option>United Kingdom</option>
+        <option>European Union</option>
+        <option>Asia</option>
+        <option>Remote-first (no physical HQ)</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <!-- ==================== SECTION 4: COMPENSATION & BENEFITS ==================== -->
+    <h4 class="section-title">💰 Compensation & Benefits</h4>
+    <div class="question-context">
+      All compensation questions are optional. Data is used for benchmarking purposes only.
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Annual total compensation (salary + bonuses + allowances) in USD</label>
+      <select class="form-select" name="annualCompensation">
+        <option value="">Prefer not to say</option>
+        <option>Less than $5,000</option>
+        <option>$5,000 - $9,999</option>
+        <option>$10,000 - $14,999</option>
+        <option>$15,000 - $19,999</option>
+        <option>$20,000 - $29,999</option>
+        <option>$30,000 - $39,999</option>
+        <option>$40,000 - $49,999</option>
+        <option>$50,000 - $74,999</option>
+        <option>$75,000 - $99,999</option>
+        <option>$100,000 - $149,999</option>
+        <option>$150,000 - $199,999</option>
+        <option>$200,000+</option>
+      </select>
+      <div class="help-text">Include all cash compensation: base salary, bonuses, commissions, allowances</div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Monthly salary in USD (approximate)</label>
+      <select class="form-select" name="monthlySalary">
+        <option value="">Prefer not to say</option>
+        <option>Less than $500</option>
+        <option>$500 - $999</option>
+        <option>$1,000 - $1,499</option>
+        <option>$1,500 - $1,999</option>
+        <option>$2,000 - $2,999</option>
+        <option>$3,000 - $3,999</option>
+        <option>$4,000 - $4,999</option>
+        <option>$5,000 - $7,499</option>
+        <option>$7,500 - $9,999</option>
+        <option>$10,000+</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">How are you paid? (Select all that apply)</label><br>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="paymentMethod" value="LocalBank">Local bank transfer (ZWL or USD)</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="paymentMethod" value="ForeignBank">Foreign bank account</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="paymentMethod" value="Paypal">PayPal</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="paymentMethod" value="Wise">Wise (formerly TransferWise)</div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="paymentMethod" value="Payoneer">Payoneer</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="paymentMethod" value="Crypto">Cryptocurrency</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="paymentMethod" value="Cash">Cash</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="paymentMethod" value="OtherPayment">Other</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Benefits and perks you receive (Select all that apply)</label><br>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="benefits" value="HealthInsurance">Health/Medical insurance</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="benefits" value="Pension">Pension/Retirement fund</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="benefits" value="PaidLeave">Paid vacation leave</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="benefits" value="SickLeave">Paid sick leave</div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="benefits" value="TrainingBudget">Training/Education budget</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="benefits" value="HomeOffice">Home office allowance</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="benefits" value="Internet">Internet allowance</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="benefits" value="Electricity">Electricity/Generator allowance</div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="benefits" value="Equipment">Work equipment (laptop, etc.)</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="benefits" value="StockOptions">Stock options/Equity</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="benefits" value="Bonuses">Performance bonuses</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="benefits" value="NoneBenefits">None of the above</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">How satisfied are you with your current compensation?</label>
+      <select class="form-select" name="compensationSatisfaction">
+        <option>Very satisfied</option>
+        <option>Somewhat satisfied</option>
+        <option>Neutral</option>
+        <option>Somewhat dissatisfied</option>
+        <option>Very dissatisfied</option>
+        <option>Not applicable</option>
+      </select>
+    </div>
+
+    <!-- ==================== SECTION 5: WORK ARRANGEMENTS ==================== -->
+    <h4 class="section-title">🏢 Work Arrangements & Environment</h4>
+    
+    <div class="mb-3">
+      <label class="form-label">Work arrangement</label>
+      <select class="form-select" name="workArrangement">
+        <option>Fully remote</option>
+        <option>Hybrid (mix of office and remote)</option>
+        <option>Fully in-office</option>
+        <option>Flexible (choose when to come to office)</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">If remote or hybrid, how many days per week do you work remotely?</label>
+      <select class="form-select" name="remoteDays">
+        <option>Not applicable</option>
+        <option>1 day per week</option>
+        <option>2 days per week</option>
+        <option>3 days per week</option>
+        <option>4 days per week</option>
+        <option>5+ days per week (fully remote)</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Work schedule</label>
+      <select class="form-select" name="workSchedule">
+        <option>Standard business hours (8am-5pm)</option>
+        <option>Flexible hours</option>
+        <option>Shift work</option>
+        <option>Results-only work environment</option>
+        <option>Other</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Team size you primarily work with</label>
+      <select class="form-select" name="teamSize">
+        <option>1 (just me)</option>
+        <option>2-5 people</option>
+        <option>6-10 people</option>
+        <option>11-20 people</option>
+        <option>21-50 people</option>
+        <option>51+ people</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Management/Leadership structure</label>
+      <select class="form-select" name="managementStructure">
+        <option>Flat hierarchy</option>
+        <option>Traditional hierarchy</option>
+        <option>Matrix organization</option>
+        <option>Self-organizing teams</option>
+        <option>Not sure</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Primary development methodology</label>
+      <select class="form-select" name="developmentMethodology">
+        <option>Agile (Scrum, Kanban, etc.)</option>
+        <option>Waterfall</option>
+        <option>DevOps</option>
+        <option>Lean</option>
+        <option>XP (Extreme Programming)</option>
+        <option>No formal methodology</option>
+        <option>Mix of methodologies</option>
+        <option>Other</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">How often do you have meetings?</label>
+      <select class="form-select" name="meetingFrequency">
+        <option>Multiple times daily</option>
+        <option>Daily</option>
+        <option>2-3 times per week</option>
+        <option>Weekly</option>
+        <option>Bi-weekly</option>
+        <option>Monthly</option>
+        <option>Rarely</option>
+      </select>
+    </div>
+
+    <!-- ==================== SECTION 6: TECHNOLOGY STACK ==================== -->
+    <h4 class="section-title">💻 Technology & Tools</h4>
+    
+    <div class="mb-3">
+      <label class="form-label">Programming, scripting, and markup languages you use regularly (Select up to 5)</label><br>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="languages" value="JavaScript">JavaScript</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="languages" value="TypeScript">TypeScript</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="languages" value="Python">Python</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="languages" value="Java">Java</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="languages" value="CSharp">C#</div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="languages" value="PHP">PHP</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="languages" value="C++">C++</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="languages" value="Go">Go</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="languages" value="Kotlin">Kotlin</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="languages" value="Swift">Swift</div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="languages" value="Rust">Rust</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="languages" value="Ruby">Ruby</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="languages" value="Dart">Dart</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="languages" value="SQL">SQL</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="languages" value="OtherLanguage">Other</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Web frameworks and libraries you use regularly (Select up to 5)</label><br>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="frameworks" value="React">React.js</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="frameworks" value="Vue">Vue.js</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="frameworks" value="Angular">Angular</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="frameworks" value="Svelte">Svelte</div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="frameworks" value="Express">Express</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="frameworks" value="Django">Django</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="frameworks" value="Flask">Flask</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="frameworks" value="Spring">Spring</div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="frameworks" value="Laravel">Laravel</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="frameworks" value="NextJS">Next.js</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="frameworks" value="NuxtJS">Nuxt.js</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="frameworks" value="OtherFramework">Other</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Databases you use regularly (Select all that apply)</label><br>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="databases" value="MySQL">MySQL</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="databases" value="PostgreSQL">PostgreSQL</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="databases" value="MongoDB">MongoDB</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="databases" value="Redis">Redis</div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="databases" value="SQLite">SQLite</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="databases" value="Oracle">Oracle</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="databases" value="MicrosoftSQL">Microsoft SQL Server</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="databases" value="Firebase">Firebase</div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="databases" value="Elasticsearch">Elasticsearch</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="databases" value="DynamoDB">DynamoDB</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="databases" value="Cassandra">Cassandra</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="databases" value="OtherDatabase">Other</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Cloud platforms you use (Select all that apply)</label><br>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="cloud" value="AWS">Amazon Web Services (AWS)</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="cloud" value="Azure">Microsoft Azure</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="cloud" value="GCP">Google Cloud Platform</div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="cloud" value="DigitalOcean">DigitalOcean</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="cloud" value="Heroku">Heroku</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="cloud" value="Vercel">Vercel</div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="cloud" value="Netlify">Netlify</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="cloud" value="Linode">Linode</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="cloud" value="NoneCloud">None/On-premise</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Development tools you use regularly (Select all that apply)</label><br>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="devTools" value="VSCode">Visual Studio Code</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="devTools" value="IntelliJ">IntelliJ IDEA</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="devTools" value="PyCharm">PyCharm</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="devTools" value="WebStorm">WebStorm</div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="devTools" value="AndroidStudio">Android Studio</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="devTools" value="Xcode">Xcode</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="devTools" value="Sublime">Sublime Text</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="devTools" value="Vim">Vim/Neovim</div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="devTools" value="Eclipse">Eclipse</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="devTools" value="Atom">Atom</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="devTools" value="Notepad++">Notepad++</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="devTools" value="OtherTool">Other</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Version control systems you use</label><br>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="versionControl" value="Git">Git</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="versionControl" value="SVN">SVN</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="versionControl" value="Mercurial">Mercurial</div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="versionControl" value="Perforce">Perforce</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="versionControl" value="NoneVersionControl">None</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Which AI/ML tools do you use? (Select all that apply)</label><br>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="aiTools" value="ChatGPT">ChatGPT</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="aiTools" value="GitHubCopilot">GitHub Copilot</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="aiTools" value="Bard">Google Bard/Gemini</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="aiTools" value="Claude">Claude</div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="aiTools" value="Midjourney">Midjourney/DALL-E</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="aiTools" value="TensorFlow">TensorFlow/PyTorch</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="aiTools" value="NoneAI">None</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== SECTION 7: CAREER DEVELOPMENT ==================== -->
+    <h4 class="section-title">📈 Career Development & Learning</h4>
+    
+    <div class="mb-3">
+      <label class="form-label">How do you primarily stay updated with new technologies? (Select up to 3)</label><br>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="stayUpdated" value="Blogs">Tech blogs/websites</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="stayUpdated" value="YouTube">YouTube tutorials</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="stayUpdated" value="OnlineCourses">Online courses</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="stayUpdated" value="Books">Books</div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="stayUpdated" value="Conferences">Conferences/Meetups</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="stayUpdated" value="SocialMedia">Social media (Twitter, LinkedIn)</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="stayUpdated" value="Podcasts">Podcasts</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="stayUpdated" value="Colleagues">Colleagues/Peers</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">How many hours per week do you spend on professional learning/development?</label>
+      <select class="form-select" name="learningHours">
+        <option>None</option>
+        <option>1-2 hours</option>
+        <option>3-5 hours</option>
+        <option>6-10 hours</option>
+        <option>11-15 hours</option>
+        <option>16-20 hours</option>
+        <option>More than 20 hours</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">What are your primary learning resources? (Select up to 3)</label><br>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="learningResources" value="FreeCodeCamp">FreeCodeCamp</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="learningResources" value="Udemy">Udemy</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="learningResources" value="Coursera">Coursera</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="learningResources" value="Pluralsight">Pluralsight</div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="learningResources" value="YouTube">YouTube</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="learningResources" value="OfficialDocs">Official documentation</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="learningResources" value="Books">Technical books</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="learningResources" value="Bootcamps">Bootcamps</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Do you have any professional certifications?</label>
+      <select class="form-select" name="hasCertifications">
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">If yes, which certifications? (Select all that apply)</label><br>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="certifications" value="AWS">AWS certifications</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="certifications" value="Azure">Microsoft Azure</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="certifications" value="GCP">Google Cloud</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="certifications" value="Oracle">Oracle</div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="certifications" value="Cisco">Cisco</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="certifications" value="Scrum">Scrum/Agile</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="certifications" value="OtherCert">Other</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Are you currently mentoring someone?</label>
+      <select class="form-select" name="isMentoring">
+        <option>Yes</option>
+        <option>No, but I would like to</option>
+        <option>No, not interested</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Do you have a mentor?</label>
+      <select class="form-select" name="hasMentor">
+        <option>Yes, formal mentorship</option>
+        <option>Yes, informal mentorship</option>
+        <option>No, but I would like one</option>
+        <option>No, not interested</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Do you contribute to open source projects?</label>
+      <select class="form-select" name="openSourceContribution">
+        <option>Yes, regularly</option>
+        <option>Yes, occasionally</option>
+        <option>No, but I would like to</option>
+        <option>No, not interested</option>
+      </select>
+    </div>
+
+    <!-- ==================== SECTION 8: CHALLENGES & ZIMBABWE-SPECIFIC ISSUES ==================== -->
+    <h4 class="section-title">⚠️ Challenges & Zimbabwe-Specific Issues</h4>
+    
+    <div class="mb-3">
+      <label class="form-label">What are the biggest challenges you face in your work? (Select up to 5)</label><br>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="challenges" value="PowerOutages">Frequent power outages</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="challenges" value="Internet">Unreliable/slow internet</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="challenges" value="LowSalary">Low salary compared to region</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="challenges" value="Equipment">Lack of modern equipment</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="challenges" value="Payment">Payment/currency issues</div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="challenges" value="Mentorship">Lack of mentorship</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="challenges" value="CareerGrowth">Limited career growth opportunities</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="challenges" value="VisaIssues">Visa/travel restrictions</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="challenges" value="RemoteWork">Difficulty finding remote work</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="challenges" value="OtherChallenge">Other</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">How has load shedding affected your work?</label>
+      <select class="form-select" name="loadSheddingImpact">
+        <option>Severely impacted - daily disruptions</option>
+        <option>Moderately impacted - regular disruptions</option>
+        <option>Minimally impacted - have backup solutions</option>
+        <option>Not impacted at all</option>
+        <option>Not applicable (outside Zimbabwe)</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">What backup solutions do you use for power? (Select all that apply)</label><br>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="powerBackup" value="Generator">Generator</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="powerBackup" value="Inverter">Inverter system</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="powerBackup" value="UPS">UPS</div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="powerBackup" value="Solar">Solar power</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="powerBackup" value="NonePower">No backup</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="powerBackup" value="OtherPower">Other</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">What is your primary internet connection?</label>
+      <select class="form-select" name="internetConnection">
+        <option>Mobile data (Econet, NetOne, Telecel)</option>
+        <option>Fixed broadband (Liquid, ZOL, etc.)</option>
+        <option>Starlink</option>
+        <option>Mixture of mobile and fixed</option>
+        <option>Public/cafe WiFi</option>
+        <option>Other</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Average monthly cost of internet (USD)</label>
+      <select class="form-select" name="internetCost">
+        <option>Less than $20</option>
+        <option>$20 - $49</option>
+        <option>$50 - $99</option>
+        <option>$100 - $199</option>
+        <option>$200+</option>
+        <option>Not sure</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">How has the digital services tax (2026 budget) affected you?</label>
+      <select class="form-select" name="digitalTaxImpact">
+        <option>Significantly increased costs</option>
+        <option>Moderately increased costs</option>
+        <option>No noticeable impact</option>
+        <option>Not aware of this tax</option>
+        <option>Not applicable</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Have you considered relocating for work?</label>
+      <select class="form-select" name="relocationConsideration">
+        <option>Yes, actively planning to relocate</option>
+        <option>Yes, considering it</option>
+        <option>No, but have considered it in the past</option>
+        <option>No, never considered it</option>
+        <option>Already relocated</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">If considering relocation, preferred destination(s)</label>
+      <input type="text" class="form-control" name="relocationDestinations" placeholder="e.g., South Africa, UK, Remote work anywhere">
+    </div>
+
+    <!-- ==================== SECTION 9: COMMUNITY & NETWORKING ==================== -->
+    <h4 class="section-title">🤝 Community & Networking</h4>
+    
+    <div class="mb-3">
+      <label class="form-label">Are you part of any local tech communities/groups? (Select all that apply)</label><br>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="techCommunities" value="ZimTechSlack">Zimbabwe Tech Slack/Discord</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="techCommunities" value="GoogleDevGroups">Google Developer Groups</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="techCommunities" value="WomenInTech">Women in Tech groups</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="techCommunities" value="UniversityAlumni">University alumni groups</div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="techCommunities" value="WhatsAppGroups">WhatsApp/Telegram groups</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="techCommunities" value="Meetups">Local meetups</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="techCommunities" value="NoneCommunities">None</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="techCommunities" value="OtherCommunity">Other</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">How often do you attend tech events/meetups?</label>
+      <select class="form-select" name="eventAttendance">
+        <option>Weekly</option>
+        <option>Monthly</option>
+        <option>Quarterly</option>
+        <option>Once or twice a year</option>
+        <option>Never</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Which platforms do you use for professional networking? (Select all that apply)</label><br>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="networkingPlatforms" value="LinkedIn">LinkedIn</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="networkingPlatforms" value="Twitter">Twitter/X</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="networkingPlatforms" value="GitHub">GitHub</div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="networkingPlatforms" value="StackOverflow">Stack Overflow</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="networkingPlatforms" value="DevTo">Dev.to</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="networkingPlatforms" value="NoneNetworking">None</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Have you participated in any hackathons or coding competitions in Zimbabwe?</label>
+      <select class="form-select" name="hackathonParticipation">
+        <option>Yes, multiple times</option>
+        <option>Yes, once or twice</option>
+        <option>No, but interested</option>
+        <option>No, not interested</option>
+      </select>
+    </div>
+
+    <!-- ==================== SECTION 10: JOB SATISFACTION & FUTURE OUTLOOK ==================== -->
+    <h4 class="section-title">🔮 Job Satisfaction & Future Outlook</h4>
+    
+    <div class="mb-3">
+      <label class="form-label">Overall job satisfaction</label>
+      <select class="form-select" name="jobSatisfaction">
+        <option>Very satisfied</option>
+        <option>Somewhat satisfied</option>
+        <option>Neutral</option>
+        <option>Somewhat dissatisfied</option>
+        <option>Very dissatisfied</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">How likely are you to look for a new job in the next 12 months?</label>
+      <select class="form-select" name="jobSearchLikelihood">
+        <option>Very likely</option>
+        <option>Somewhat likely</option>
+        <option>Neutral</option>
+        <option>Somewhat unlikely</option>
+        <option>Very unlikely</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">What would make you consider changing jobs? (Select up to 3)</label><br>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="jobChangeReasons" value="HigherSalary">Higher salary</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="jobChangeReasons" value="RemoteWork">Better remote work options</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="jobChangeReasons" value="CareerGrowth">Career growth opportunities</div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="jobChangeReasons" value="TechStack">More interesting tech stack</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="jobChangeReasons" value="WorkLife">Better work-life balance</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="jobChangeReasons" value="Relocation">Relocation opportunity</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">How optimistic are you about the future of Zimbabwe's tech industry?</label>
+      <select class="form-select" name="industryOptimism">
+        <option>Very optimistic</option>
+        <option>Somewhat optimistic</option>
+        <option>Neutral</option>
+        <option>Somewhat pessimistic</option>
+        <option>Very pessimistic</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Do you think AI will significantly impact your job in the next 5 years?</label>
+      <select class="form-select" name="aiImpact">
+        <option>Yes, it will enhance my job</option>
+        <option>Yes, it will replace some tasks</option>
+        <option>Yes, it may replace my job entirely</option>
+        <option>No, minimal impact expected</option>
+        <option>Not sure</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Where do you see yourself in 5 years?</label>
+      <select class="form-select" name="fiveYearVision">
+        <option>In a senior/leadership role in Zimbabwe</option>
+        <option>Working remotely for international company</option>
+        <option>Running my own tech business/startup</option>
+        <option>Working abroad</option>
+        <option>In a different industry/role</option>
+        <option>Not sure</option>
+      </select>
+    </div>
+
+    <!-- ==================== SECTION 11: FINAL THOUGHTS ==================== -->
+    <h4 class="section-title">💭 Final Thoughts & Suggestions</h4>
+    
+    <div class="mb-3">
+      <label class="form-label">What is the most important change needed in Zimbabwe's tech ecosystem? (Optional)</label>
+      <textarea class="form-control" name="importantChange" rows="3" placeholder="Your thoughts on what would most improve the tech industry in Zimbabwe..."></textarea>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Advice for someone starting their tech career in Zimbabwe (Optional)</label>
+      <textarea class="form-control" name="careerAdvice" rows="3" placeholder="Your advice for aspiring developers..."></textarea>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Suggestions for improving this survey in future years (Optional)</label>
+      <textarea class="form-control" name="surveyFeedback" rows="2" placeholder="Your feedback on this survey..."></textarea>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Would you like to receive a copy of the survey results report?</label>
+      <select class="form-select" name="receiveReport">
+        <option>Yes, please send me the report</option>
+        <option>No, thank you</option>
+      </select>
+    </div>
+    
+    <div class="mb-3" id="emailField" style="display: none;">
+      <label class="form-label">Email address for survey results</label>
+      <input type="email" class="form-control" name="email" placeholder="your.email@example.com">
+      <div class="help-text">Your email will only be used to send the survey report and will not be linked to your responses.</div>
+    </div>
+
+    <!-- SUBMIT SECTION -->
+    <div class="card mt-5 mb-4 border-primary">
+      <div class="card-body text-center">
+        <h5 class="card-title">Ready to Submit</h5>
+        <p class="card-text">Thank you for taking the time to complete this comprehensive survey. Your contribution will help build a better understanding of Zimbabwe's tech community.</p>
+        
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="consentCheck" required>
+          <label class="form-check-label" for="consentCheck">
+            I understand that my responses are anonymous and will be used only for aggregate analysis in the Zimbabwe State of Developers Report.
+          </label>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-lg px-5">
+          <span class="submit-text">Submit Survey</span>
+          <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+        </button>
+        <p class="text-muted mt-3">🇿🇼 Thank you for contributing to Zimbabwe's tech community!</p>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Your External JS -->
+<script src="script.js"></script>
+
+</body>
+</html>
