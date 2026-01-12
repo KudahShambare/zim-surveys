@@ -573,6 +573,17 @@ window.addEventListener('unhandledrejection', function(e) {
   }
 });
 
+// =================== Diaspora =================================
+
+document.getElementById("provinceSelect").addEventListener("change", function () {
+  const diaspora = document.getElementById("diasporaFields");
+  if (this.value === "diaspora") {
+    diaspora.style.display = "block";
+  } else {
+    diaspora.style.display = "none";
+  }
+});
+
 // ==================== EXPORT FOR TESTING ====================
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {

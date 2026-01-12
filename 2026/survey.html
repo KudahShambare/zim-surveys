@@ -114,48 +114,66 @@
           <option value="">Prefer not to say</option>
           <option>Male</option>
           <option>Female</option>
-          <option>Non-binary / third gender</option>
-          <option>Prefer to self-describe</option>
-          <option>Prefer not to answer</option>
+  
         </select>
       </div>
     </div>
     
-    <div class="mb-3">
-      <label class="form-label">If you prefer to self-describe your gender:</label>
-      <input type="text" class="form-control" name="genderSelfDescribe" placeholder="Optional">
-    </div>
+
     
     <div class="row">
       <div class="col-md-6 mb-3">
         <label class="form-label">Current location in Zimbabwe</label>
-        <select class="form-select" name="location">
-          <option>Harare</option>
-          <option>Bulawayo</option>
-          <option>Mutare</option>
-          <option>Gweru</option>
-          <option>Masvingo</option>
-          <option>Kwekwe</option>
-          <option>Kadoma</option>
-          <option>Chitungwiza</option>
-          <option>Norton</option>
-          <option>Marondera</option>
-          <option>Chegutu</option>
-          <option>Zvishavane</option>
-          <option>Bindura</option>
-          <option>Beitbridge</option>
-          <option>Kariba</option>
-          <option>Chinhoyi</option>
-          <option>Epworth</option>
-          <option>Other urban area</option>
-          <option>Rural area</option>
-          <option>Outside Zimbabwe</option>
-        </select>
+     <div class="mb-3">
+  <label class="form-label">Province</label>
+  <select class="form-select" name="province" id="provinceSelect">
+    <option value="">Select Province</option>
+    <option>Bulawayo Metropolitan</option>
+    <option>Harare Metropolitan</option>
+    <option>Manicaland</option>
+    <option>Mashonaland Central</option>
+    <option>Mashonaland East</option>
+    <option>Mashonaland West</option>
+    <option>Masvingo</option>
+    <option>Matabeleland North</option>
+    <option>Matabeleland South</option>
+    <option>Midlands</option>
+    <option value="diaspora">Outside Zimbabwe (Diaspora)</option>
+  </select>
+</div>
+
+<div id="diasporaFields" style="display:none;">
+  <div class="mb-3">
+    <label class="form-label">Country of residence</label>
+    <input type="text" class="form-control" name="diaspora_country" placeholder="e.g. South Africa, UK, Canada">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">City</label>
+    <input type="text" class="form-control" name="diaspora_city" placeholder="e.g. Johannesburg, London, Toronto">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Timezone</label>
+    <input type="text" class="form-control" name="diaspora_timezone" placeholder="e.g. GMT+2, GMT-5">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Would you consider working with or investing in Zimbabwe-based projects?</label>
+    <select class="form-select" name="diaspora_engagement">
+      <option value="">Select</option>
+      <option>Yes – actively interested</option>
+      <option>Maybe – depends on opportunity</option>
+      <option>No – just observing</option>
+    </select>
+  </div>
+</div>
+
+
+
+        
       </div>
-      <div class="col-md-6 mb-3">
-        <label class="form-label">If other location, please specify:</label>
-        <input type="text" class="form-control" name="locationOther" placeholder="Enter your location">
-      </div>
+    
     </div>
     
     <div class="mb-3">
