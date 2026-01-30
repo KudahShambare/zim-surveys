@@ -1,0 +1,24 @@
+{
+  "name": "zim-surveys=server",
+  "version": "0.0.1",
+  "description": "Backend for checkout processing for loomo.co/.zw",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KudahShambare/loomo-serveless.git"
+  },
+  "keywords": ["loomo"],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KudahShambare/loomo-serveless/issues"
+  },
+  "homepage": "https://github.com/KudahShambare/loomo-serveless#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.50.0"
+   
+  }
+}
