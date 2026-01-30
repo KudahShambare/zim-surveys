@@ -685,17 +685,28 @@ async function handleFormSubmit(e) {
     
     showSuccess();
     
+    // Clear saved state
     localStorage.removeItem('zimDevSurvey2026');
     AppState.lastSaved = null;
     
+    // Reset form immediately on success
+    DOM.surveyForm.reset();
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Hide success message after 5 seconds
     setTimeout(() => {
-      DOM.surveyForm.reset();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 3000);
+      if (DOM.successMessage) {
+        DOM.successMessage.classList.remove('show');
+        DOM.successMessage.style.display = 'none';
+      }
+    }, 5000);
     
   } catch (error) {
     console.error('❌ Submission Error:', error);
     showError(`Failed to submit: ${error.message}`);
+    // Don't reset form on error - let user fix and retry
   } finally {
     AppState.isSubmitting = false;
     showLoading(false);
@@ -777,8 +788,16 @@ function collectFormData() {
 
 // ==================== UI FEEDBACK ====================
 function showLoading(show) {
+  console.log(`${show ? '⏳' : '✅'} Loading overlay ${show ? 'shown' : 'hidden'}`);
+  
   if (show) {
-    if (DOM.loadingOverlay) DOM.loadingOverlay.classList.add('show');
+    if (DOM.loadingOverlay) {
+      DOM.loadingOverlay.classList.add('show');
+      DOM.loadingOverlay.style.display = 'flex';
+    } else {
+      console.warn('⚠️ Loading overlay element not found!');
+    }
+    
     if (DOM.submitButton) {
       DOM.submitButton.disabled = true;
       const submitText = DOM.submitButton.querySelector('.submit-text');
@@ -787,7 +806,11 @@ function showLoading(show) {
       if (spinner) spinner.classList.remove('d-none');
     }
   } else {
-    if (DOM.loadingOverlay) DOM.loadingOverlay.classList.remove('show');
+    if (DOM.loadingOverlay) {
+      DOM.loadingOverlay.classList.remove('show');
+      DOM.loadingOverlay.style.display = 'none';
+    }
+    
     if (DOM.submitButton) {
       DOM.submitButton.disabled = false;
       const submitText = DOM.submitButton.querySelector('.submit-text');
@@ -799,19 +822,41 @@ function showLoading(show) {
 }
 
 function showSuccess() {
-  if (!DOM.successMessage) return;
+  console.log('🎉 SUCCESS! Showing success message');
+  
+  if (!DOM.successMessage) {
+    console.error('❌ Success message element not found! Looking for #successMessage');
+    // Fallback to alert
+    alert('✅ Survey submitted successfully! Thank you for your participation.');
+    return;
+  }
+  
   DOM.successMessage.classList.add('show');
+  DOM.successMessage.style.display = 'flex';
+  
   setTimeout(() => {
     DOM.successMessage.classList.remove('show');
+    DOM.successMessage.style.display = 'none';
   }, 10000);
 }
 
 function showError(message) {
-  if (!DOM.errorMessage || !DOM.errorText) return;
+  console.error('❌ ERROR! Showing error message:', message);
+  
+  if (!DOM.errorMessage || !DOM.errorText) {
+    console.error('❌ Error message elements not found! Looking for #errorMessage and #errorText');
+    // Fallback to alert
+    alert('❌ Error: ' + message);
+    return;
+  }
+  
   DOM.errorText.textContent = message;
   DOM.errorMessage.classList.add('show');
+  DOM.errorMessage.style.display = 'flex';
+  
   setTimeout(() => {
     DOM.errorMessage.classList.remove('show');
+    DOM.errorMessage.style.display = 'none';
   }, 15000);
 }
 
@@ -985,10 +1030,43 @@ function enableDebugFeatures() {
     return { missing, present };
   };
   
+  window.testSuccessMessage = function() {
+    console.log('🧪 Testing success message...');
+    showSuccess();
+  };
+  
+  window.testErrorMessage = function() {
+    console.log('🧪 Testing error message...');
+    showError('This is a test error message');
+  };
+  
+  window.testLoadingOverlay = function() {
+    console.log('🧪 Testing loading overlay...');
+    showLoading(true);
+    setTimeout(() => showLoading(false), 3000);
+  };
+  
+  window.checkFeedbackElements = function() {
+    console.log('🔍 Checking feedback elements:');
+    console.log('  loadingOverlay:', DOM.loadingOverlay ? '✅ Found' : '❌ Missing');
+    console.log('  successMessage:', DOM.successMessage ? '✅ Found' : '❌ Missing');
+    console.log('  errorMessage:', DOM.errorMessage ? '✅ Found' : '❌ Missing');
+    console.log('  errorText:', DOM.errorText ? '✅ Found' : '❌ Missing');
+    
+    if (!DOM.loadingOverlay) console.error('Add element with id="loadingOverlay"');
+    if (!DOM.successMessage) console.error('Add element with id="successMessage"');
+    if (!DOM.errorMessage) console.error('Add element with id="errorMessage"');
+    if (!DOM.errorText) console.error('Add element with id="errorText"');
+  };
+  
   console.log('%c🔧 Debug functions available:', 'color: #0d6efd; font-weight: bold;');
   console.log('- exportFormData()');
   console.log('- validateFormDebug()');
   console.log('- checkRequiredFields()');
+  console.log('- testSuccessMessage()');
+  console.log('- testErrorMessage()');
+  console.log('- testLoadingOverlay()');
+  console.log('- checkFeedbackElements()');
 }
 
 // ==================== ERROR HANDLING ====================

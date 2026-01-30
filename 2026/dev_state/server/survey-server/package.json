@@ -10,7 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/KudahShambare/loomo-serveless.git"
   },
-  "keywords": ["loomo"],
+  "keywords": [
+    "loomo"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -18,7 +20,7 @@
   },
   "homepage": "https://github.com/KudahShambare/loomo-serveless#readme",
   "dependencies": {
-    "@supabase/supabase-js": "^2.50.0"
-   
+    "@supabase/supabase-js": "^2.50.0",
+    "dotenv": "^17.2.3"
   }
 }
