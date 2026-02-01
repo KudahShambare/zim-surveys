@@ -1,6 +1,6 @@
 // ==================== CONFIGURATION ====================
 const CONFIG = {
-  API_ENDPOINT: "http://localhost:3000/api/create/survey",
+  API_ENDPOINT: "https://zim-surveys-server.sigmoid.co.zw/api/create/survey",
   
   // Server required fields - MUST be present
   REQUIRED_FIELDS: ['age', 'employment_status'],
