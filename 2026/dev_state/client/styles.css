@@ -420,3 +420,54 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid #ddd;
   }
 }
+
+/* Full-page overlay base */
+.fullscreen-message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+}
+
+/* Visible state */
+.fullscreen-message.show {
+  display: flex;
+}
+
+/* Message card */
+.fullscreen-message .message-box {
+  max-width: 32rem;
+  width: 90%;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 0.75rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* Success */
+#successMessage {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+#successMessage .message-box {
+  background: #e6fffa;
+  color: #065f46;
+}
+
+/* Error */
+#errorMessage {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+#errorMessage .message-box {
+  background: #fee2e2;
+  color: #7f1d1d;
+}

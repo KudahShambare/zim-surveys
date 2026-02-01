@@ -52,7 +52,8 @@ const DOM = {
   submitButton: null,
   emailField: null,
   receiveReportSelect: null,
-  consentCheckbox: null
+  consentCheckbox: null,
+  feedbackOverlay: null,
 };
 
 // ==================== INITIALIZATION ====================
@@ -81,6 +82,8 @@ function initializeDOM() {
   DOM.submitButton = DOM.surveyForm?.querySelector('button[type="submit"]');
   DOM.emailField = document.getElementById('emailField');
   DOM.receiveReportSelect = document.querySelector('select[name="receive_report"]');
+  DOM.feedbackOverlay = document.getElementById('feedbackOverlay');
+
   
   // Find consent checkbox - try multiple selectors
   DOM.consentCheckbox = document.getElementById('consentCheck') || 
@@ -628,7 +631,6 @@ async function handleFormSubmit(e) {
     return false;
   }
   
-  console.log('🔍 Starting form validation...');
   
   // Validate form
   const { isValid, errors } = validateForm();
@@ -639,7 +641,6 @@ async function handleFormSubmit(e) {
     return false;
   }
   
-  console.log('✅ Validation passed');
   
   AppState.isSubmitting = true;
   showLoading(true);
@@ -656,7 +657,6 @@ async function handleFormSubmit(e) {
     
     formData.user_agent = navigator.userAgent;
     
-    console.log('🚀 Sending to server:', formData);
     
     const response = await fetch(CONFIG.API_ENDPOINT, {
       method: 'POST',
@@ -674,14 +674,12 @@ async function handleFormSubmit(e) {
       throw new Error('Invalid response from server');
     }
     
-    console.log('📥 Server response:', result);
     
     if (!response.ok) {
       console.error('❌ Server error:', result);
       throw new Error(result.error || result.details || `Server error: ${response.status}`);
     }
     
-    console.log('✅ Submission successful!');
     
     showSuccess();
     
@@ -821,43 +819,38 @@ function showLoading(show) {
   }
 }
 
-function showSuccess() {
-  console.log('🎉 SUCCESS! Showing success message');
-  
-  if (!DOM.successMessage) {
-    console.error('❌ Success message element not found! Looking for #successMessage');
-    // Fallback to alert
-    alert('✅ Survey submitted successfully! Thank you for your participation.');
+const showSuccess =()=> {
+  if (!DOM.feedbackOverlay || !DOM.successMessage) {
+    alert('✅ Survey submitted successfully!');
     return;
   }
-  
-  DOM.successMessage.classList.add('show');
-  DOM.successMessage.style.display = 'flex';
-  
-  setTimeout(() => {
-    DOM.successMessage.classList.remove('show');
-    DOM.successMessage.style.display = 'none';
-  }, 10000);
+
+  // Hide error if visible
+  DOM.errorMessage?.classList.remove('show');
+
+  document.body.classList.add('feedback-open');
+  DOM.feedbackOverlay.classList.add('show');
+
+  DOM.successMessage.style.display = 'block';
+  DOM.errorMessage.style.display = 'none';
 }
 
-function showError(message) {
-  console.error('❌ ERROR! Showing error message:', message);
-  
-  if (!DOM.errorMessage || !DOM.errorText) {
-    console.error('❌ Error message elements not found! Looking for #errorMessage and #errorText');
-    // Fallback to alert
+const showError = (message)=> {
+  if (!DOM.feedbackOverlay || !DOM.errorMessage || !DOM.errorText) {
     alert('❌ Error: ' + message);
     return;
   }
-  
+
   DOM.errorText.textContent = message;
-  DOM.errorMessage.classList.add('show');
-  DOM.errorMessage.style.display = 'flex';
-  
-  setTimeout(() => {
-    DOM.errorMessage.classList.remove('show');
-    DOM.errorMessage.style.display = 'none';
-  }, 15000);
+
+  // Hide success if visible
+  DOM.successMessage?.classList.remove('show');
+
+  document.body.classList.add('feedback-open');
+  DOM.feedbackOverlay.classList.add('show');
+
+  DOM.errorMessage.style.display = 'block';
+  DOM.successMessage.style.display = 'none';
 }
 
 function showNotification(message, type = 'info') {
@@ -1082,4 +1075,9 @@ window.addEventListener('unhandledrejection', function(e) {
   if (CONFIG.DEBUG_MODE) {
     showNotification(`Promise error: ${e.reason?.message || e.reason}`, 'error');
   }
+});
+
+DOM.feedbackOverlay?.addEventListener('click', () => {
+  DOM.feedbackOverlay.classList.remove('show');
+  document.body.classList.remove('feedback-open');
 });
