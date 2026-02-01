@@ -20,7 +20,10 @@ export default async function handler(req, res) {
     // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*') // Allow all origins, or specify your domain
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+res.setHeader(
+  'Access-Control-Allow-Headers',
+  'Content-Type, Authorization, Accept, X-Requested-With'
+)
 
    if (req.method === 'OPTIONS') {
     return res.status(200).end()
