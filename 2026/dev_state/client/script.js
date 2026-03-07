@@ -740,46 +740,84 @@ function collectFormData() {
         formData[fieldName] = element.value;
       }
     } else if (element.type === 'select-multiple') {
-      formData[fieldName] = Array.from(element.selectedOptions).map(opt => opt.value);
+      const selected = Array.from(element.selectedOptions)
+        .map(opt => opt.value)
+        .filter(val => val && val !== '' && val !== 'Select...' && val !== 'Choose...');
+      if (selected.length > 0) {
+        formData[fieldName] = selected;
+      }
     } else if (element.tagName === 'SELECT') {
-      // Special handling for select dropdowns
+      // **FIXED: Better select dropdown handling**
       const value = element.value?.trim();
-      // Include value even if it looks like a placeholder, let validation handle it
-      if (value !== undefined && value !== null) {
+      const selectedOption = element.options[element.selectedIndex];
+      
+      // Only include if it's a valid selection (not placeholder/disabled)
+      const isValidSelection = value && 
+                              value !== '' && 
+                              value !== 'Select...' && 
+                              value !== 'Choose...' &&
+                              value !== '--Select--' &&
+                              !selectedOption?.disabled;
+      
+      if (isValidSelection) {
         formData[fieldName] = value;
+      } else if (CONFIG.REQUIRED_FIELDS.includes(fieldName)) {
+        // For required fields, explicitly set empty string so validation catches it
+        formData[fieldName] = '';
       }
       
       // Debug logging for required fields
       if (CONFIG.REQUIRED_FIELDS.includes(fieldName)) {
         console.log(`📋 Collecting required field "${fieldName}":`, {
           value: value,
+          isValidSelection: isValidSelection,
           selectedIndex: element.selectedIndex,
-          selectedOption: element.options[element.selectedIndex]?.text
+          selectedOption: selectedOption?.text
         });
       }
     } else {
-      // Text inputs, textareas, etc.
+      // **FIXED: Text inputs, textareas - only include if has value**
       const value = element.value?.trim();
-      if (value) {
+      if (value && value !== '') {
         formData[fieldName] = value;
+      } else if (CONFIG.REQUIRED_FIELDS.includes(fieldName)) {
+        // For required fields, explicitly set empty string
+        formData[fieldName] = '';
       }
     }
   }
   
-  // Clean up empty values but keep empty strings for validation
+  // **FIXED: More aggressive cleanup of empty/invalid values**
   Object.keys(formData).forEach(key => {
-    if (Array.isArray(formData[key]) && formData[key].length === 0) {
-      formData[key] = null;
+    const value = formData[key];
+    
+    // Remove empty arrays
+    if (Array.isArray(value) && value.length === 0) {
+      delete formData[key];
+      return;
     }
-    // Don't delete empty strings for required fields - let validation catch them
+    
+    // Remove null/undefined
+    if (value === null || value === undefined) {
+      delete formData[key];
+      return;
+    }
+    
+    // For required fields, keep empty strings for validation
+    // For optional fields, remove empty strings
     if (!CONFIG.REQUIRED_FIELDS.includes(key)) {
-      if (formData[key] === '' || formData[key] === undefined) {
+      if (value === '' || (typeof value === 'string' && value.trim() === '')) {
         delete formData[key];
       }
     }
   });
   
   console.log('📦 Final collected data:', formData);
+  console.log('🔍 Required fields check:', CONFIG.REQUIRED_FIELDS.map(f => ({
+    field: f,
+    value: formData[f],
+    hasValue: !!formData[f] && formData[f] !== ''
+  })));
   
   return formData;
 }
