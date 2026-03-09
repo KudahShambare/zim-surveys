@@ -37,6 +37,7 @@ Participation is **anonymous**, and no personally identifiable information is co
 ## 📅 Survey Timeline
 
 * **Status:** Open
+* **Survey URL:** https://263.devs.survey.sigmoid.co.zw/
 * **Closes:** 31 March
 
 ---
